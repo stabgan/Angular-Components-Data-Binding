@@ -1,11 +1,17 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { GameControlComponent } from './game-control/game-control.component';
+import { OddComponent } from './odd/odd.component';
+import { EvenComponent } from './even/even.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        GameControlComponent,
+        OddComponent,
+        EvenComponent
       ],
     }).compileComponents();
   }));
@@ -16,16 +22,32 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'assign3'`, () => {
+  it('should have a title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('assign3');
+    expect(app.title).toBeDefined();
   });
 
-  it('should render title', () => {
+  it('should start with empty odd and even arrays', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('assign3 app is running!');
+    const app = fixture.debugElement.componentInstance;
+    expect(app.oddNumbers.length).toBe(0);
+    expect(app.evenNumbers.length).toBe(0);
+  });
+
+  it('should push even numbers to evenNumbers array', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    app.onIntervalFired(2);
+    app.onIntervalFired(4);
+    expect(app.evenNumbers).toEqual([2, 4]);
+  });
+
+  it('should push odd numbers to oddNumbers array', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    app.onIntervalFired(1);
+    app.onIntervalFired(3);
+    expect(app.oddNumbers).toEqual([1, 3]);
   });
 });

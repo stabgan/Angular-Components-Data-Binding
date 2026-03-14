@@ -1,27 +1,60 @@
-# Assign3
+# Angular Components & Data Binding
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+A small Angular app demonstrating **component communication** through custom events (`@Output`) and property binding (`@Input`). A timer emits incrementing numbers, which are sorted into odd and even lists displayed by child components.
 
-## Development server
+## How It Works
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. **GameControlComponent** — Start/Stop buttons control a `setInterval` timer that emits an incrementing counter every second.
+2. **AppComponent** — Listens to the `intervalFired` event and routes each number to the correct array (odd or even).
+3. **OddComponent / EvenComponent** — Receive a number via `@Input` and display it with color-coded text (blue for odd, green for even).
 
-## Code scaffolding
+```
+AppComponent
+├── GameControlComponent   @Output() intervalFired → emits numbers
+├── OddComponent[]         @Input('odd') number    ← receives odd numbers
+└── EvenComponent[]        @Input('even') number   ← receives even numbers
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠 Tech Stack
 
-## Build
+| Tool | Version | Purpose |
+|------|---------|---------|
+| 🅰️ Angular | 8.2 | Component framework |
+| 📘 TypeScript | 3.5 | Type-safe JavaScript |
+| 🎨 Bootstrap | 3.4 | UI styling |
+| 🧪 Karma + Jasmine | — | Unit testing |
+| 🔬 Protractor | 5.4 | E2E testing |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Getting Started
 
-## Running unit tests
+```bash
+# Install dependencies
+npm install
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Start dev server (http://localhost:4200)
+ng serve
 
-## Running end-to-end tests
+# Run unit tests
+ng test
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Production build
+ng build --prod
+```
 
-## Further help
+## Key Concepts Demonstrated
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- `@Input()` — parent-to-child data binding with alias (`@Input('odd')`)
+- `@Output()` + `EventEmitter` — child-to-parent event communication
+- `*ngFor` — rendering dynamic lists
+- `OnDestroy` lifecycle hook — cleaning up `setInterval` to prevent memory leaks
+- Guard pattern — preventing multiple overlapping timers on repeated Start clicks
+
+## ⚠️ Known Issues
+
+- Built on **Angular 8** which is end-of-life. A migration to Angular 16+ (standalone components, signals) would be the natural next step.
+- The `docs/` folder contains a stale pre-built deployment from the original Angular CLI scaffold.
+- Bootstrap 3 is also EOL; upgrading to Bootstrap 5 would drop the jQuery dependency.
+
+## License
+
+This project is available as open source.
