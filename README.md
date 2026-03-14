@@ -1,27 +1,88 @@
-# Assign3
+# 🎮 Angular Odd/Even Counter Game
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+An interactive number counter game built with **Angular 8** that demonstrates core data binding concepts — property binding, event binding, and component communication using `@Input()` and `@Output()` decorators.
 
-## Development server
+Press **Start** to kick off a timer that increments a counter every second. Each number is classified as odd or even and rendered in its own styled component. Press **Stop** to pause at any time.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🧩 Project Structure
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+src/app/
+├── app.component.*          # Root — routes numbers to odd/even lists
+├── game-control/            # Start/Stop buttons, emits counter via @Output()
+├── odd/                     # Displays odd numbers (blue text)
+└── even/                    # Displays even numbers (green text)
+```
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## 🛠️ Tech Stack
 
-## Running unit tests
+| Layer | Technology |
+|-------|-----------|
+| ⚡ Framework | Angular 8.2 |
+| 🟦 Language | TypeScript 3.5 |
+| 🎨 Styling | Bootstrap 3.4 + component-scoped CSS |
+| 📦 Package Manager | npm |
+| 🧪 Unit Tests | Karma + Jasmine |
+| 🔬 E2E Tests | Protractor |
+| 🔧 CLI | Angular CLI 8.3 |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## 📦 Key Dependencies
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+| Package | Version |
+|---------|---------|
+| `@angular/core` | ~8.2.14 |
+| `@angular/cli` | ~8.3.21 |
+| `bootstrap` | ^3.4.1 |
+| `rxjs` | ~6.4.0 |
+| `typescript` | ~3.5.3 |
+| `zone.js` | ~0.9.1 |
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## 🚀 Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/stabgan/Angular-Components-Data-Binding.git
+cd Angular-Components-Data-Binding
+
+# Install dependencies
+npm install
+
+# Start the dev server
+ng serve
+```
+
+Open [http://localhost:4200](http://localhost:4200) in your browser.
+
+### Other Commands
+
+```bash
+ng build              # Build for development
+ng build --prod       # Production build (output → dist/assign3)
+ng test               # Run unit tests via Karma
+ng e2e                # Run end-to-end tests via Protractor
+ng lint               # Lint the project with TSLint
+```
+
+---
+
+## 🐛 Known Issues
+
+- Clicking **Start** multiple times without stopping first spawns duplicate intervals, causing the counter to increment faster than intended. A guard or `clearInterval` before `setInterval` would fix this.
+- The `interval` property in `GameControlComponent` is untyped (`any` implicit) — should be typed as `ReturnType<typeof setInterval>` or `number`.
+- Angular 8 is end-of-life. Several Dependabot PRs are open for vulnerable transitive dependencies (lodash, handlebars, elliptic, etc.).
+- No `trackBy` function on the `*ngFor` directives — may cause unnecessary re-renders as the lists grow.
+- The page title is the default "Assign3" from the CLI scaffold.
+
+---
+
+## 📄 License
+
+No license specified.
