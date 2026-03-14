@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display the game control buttons', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('assign3 app is running!');
+    expect(page.getStartButtonText()).toEqual('Start');
   });
 
   afterEach(async () => {

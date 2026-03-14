@@ -45,7 +45,7 @@ ng build --prod
 
 - `@Input()` — parent-to-child data binding with alias (`@Input('odd')`)
 - `@Output()` + `EventEmitter` — child-to-parent event communication
-- `*ngFor` — rendering dynamic lists
+- `*ngFor` with `trackBy` — efficient rendering of dynamic lists
 - `OnDestroy` lifecycle hook — cleaning up `setInterval` to prevent memory leaks
 - Guard pattern — preventing multiple overlapping timers on repeated Start clicks
 

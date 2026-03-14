@@ -1,7 +1,7 @@
 
 <div class="container" style="padding-top: 50px;">
-<div class="btn-group-vertical">
-  <button class="btn btn-success" (click)="startTimer()">Start</button>
-  <button class="btn btn-danger" (click)="pauseGame()">Stop</button>
-</div>
+  <div class="btn-group-vertical" role="group" aria-label="Game controls">
+    <button class="btn btn-success" (click)="startTimer()" aria-label="Start timer">Start</button>
+    <button class="btn btn-danger" (click)="pauseGame()" aria-label="Stop timer">Stop</button>
+  </div>
 </div>

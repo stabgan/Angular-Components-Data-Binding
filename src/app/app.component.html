@@ -1,11 +1,18 @@
-<div class="row">
-  <div class="col-xs-12">
-    <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
+<div class="container">
+  <h1>{{ title }}</h1>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <app-odd *ngFor="let oddNumber of oddNumbers" [odd]="oddNumber"></app-odd>
-    <app-even *ngFor="let evenNumber of evenNumbers" [even]="evenNumber"></app-even>
+  <div class="row" style="padding-top: 20px;">
+    <div class="col-xs-6">
+      <h2>Odd Numbers</h2>
+      <app-odd *ngFor="let oddNumber of oddNumbers; trackBy: trackByIndex" [odd]="oddNumber"></app-odd>
+    </div>
+    <div class="col-xs-6">
+      <h2>Even Numbers</h2>
+      <app-even *ngFor="let evenNumber of evenNumbers; trackBy: trackByIndex" [even]="evenNumber"></app-even>
+    </div>
   </div>
 </div>

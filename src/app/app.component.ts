@@ -17,4 +17,8 @@ export class AppComponent {
       this.oddNumbers.push(firedNumber);
     }
   }
+
+  trackByIndex(index: number): number {
+    return index;
+  }
 }
